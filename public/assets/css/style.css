@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Silem";
+    src: url("../font/SilomBol.ttf");
+    }
+
+.addBurger {
+    margin-top: 50px;
+}
+
+body {
+    font-family: Silem;
+}
+
+.notEaten, .eaten {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(253, 222, 127);
+}
+
+.notEaten:hover {
+    cursor: pointer;
+}
+
+.eaten:hover {
+    cursor: pointer;
+}
+
+#burger {
+    background-color: rgb(253, 222, 127);
+}
+
+.devour {
+    font-family: Silem;
+}
+
+.delete {
+    font-family: Silem;
+}
+
+
+@media only screen and (max-width: 1000px) {
+   .addBurger {
+    margin-top: 10px;
+   }
+
+   .logo {
+       margin-top: 20px !important;
+   }
+
+}
+
+
+
+
+

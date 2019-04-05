@@ -1,0 +1,70 @@
+<div id="mainContainer" class="container">
+  <div class="row">
+    <div class="col-6 float-right">
+      <a href="/"><img class="img-fluid mt-1 mb-1 logo" src="assets/images/eatDaBurgerLogo.png"></a>
+    </div>
+    <div class="col-6 float-left">
+      <div class="card addBurger">
+        <div class="card-body bg-light">
+          <form class="needs-validation" id="newBurger">
+            <div class="form-group">
+              <input type="text" class="form-control name-width" id="burger" required>
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+            </div>
+            <button id="addBurger" type="submit" class="btn btn-warning">Add
+              Da Burger&nbsp&nbsp&nbsp<i class="fas fa-hamburger"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row mt-1">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body bg-light">
+          <h5 class="card-title">Burgers I Want To Eat</h5>
+
+          <ul class="list-group" id='notEatenList'>
+            {{#each burgers}}
+              {{#unless devoured}}
+                {{> burgers/burger-block devour=false}}
+              {{/unless}}
+            {{/each}}
+            {{!-- <li class="list-group-item notEaten" data-item="1">Cras justo odio</li>
+            <li class="list-group-item notEaten" data-item="2">Dapibus ac facilisis in</li>
+            <li class="list-group-item notEaten" data-item="3">Morbi leo risus</li>
+            <li class="list-group-item notEaten" data-item="4">Porta ac consectetur ac</li>
+            <li class="list-group-item notEaten" data-item="5">Vestibulum at eros</li> --}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body bg-light">
+          <h5 class="card-title">Burgers I Have Eaten</h5>
+          <ul class="list-group" id='eatenList'>
+            {{#each burgers}}
+              {{#if devoured}}
+                {{> burgers/burger-block devour=true}}
+              {{/if}}
+            {{/each}}
+            {{!-- <li class="list-group-item eaten" data-item="6">Cras justo odio</li>
+            <li class="list-group-item eaten" data-item="7">Dapibus ac facilisis in</li>
+            <li class="list-group-item eaten" data-item="8">Morbi leo risus</li>
+            <li class="list-group-item eaten" data-item="9">Porta ac consectetur ac</li>
+            <li class="list-group-item eaten" data-item="10">Vestibulum at eros</li> --}}
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio class="audios" id="eatAudio" preload="auto"> 
+   <source src="assets/audio/Eating-SoundBible.com-1470347575.wav" type="audio/wav">
+</audio>
