@@ -1,5 +1,5 @@
 -- Insert a set of records.
-use burger_db;
+use sequelizedBurger_db;
 INSERT INTO burgers (burger_name) VALUES ('Whopper');
 
 INSERT INTO burgers (burger_name) VALUES ('Big Mac');
