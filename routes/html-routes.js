@@ -10,7 +10,7 @@ module.exports = function (app) {
     db.Burger.findAll({})
       .then(function (data) {
         // console.log(data);
-        data = data.map(el => el.get({ plain: true }))
+        data = data.map(a => a.get({ plain: true }))
         const hbsObject = {
           burgers: data
         };

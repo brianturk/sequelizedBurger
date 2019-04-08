@@ -29,15 +29,10 @@
 
           <ul class="list-group" id='notEatenList'>
             {{#each burgers}}
-              {{#unless devoured}}
-                {{> burgers/burger-block devour=false}}
-              {{/unless}}
+            {{#unless devoured}}
+            {{> burgers/burger-block devour=false}}
+            {{/unless}}
             {{/each}}
-            {{!-- <li class="list-group-item notEaten" data-item="1">Cras justo odio</li>
-            <li class="list-group-item notEaten" data-item="2">Dapibus ac facilisis in</li>
-            <li class="list-group-item notEaten" data-item="3">Morbi leo risus</li>
-            <li class="list-group-item notEaten" data-item="4">Porta ac consectetur ac</li>
-            <li class="list-group-item notEaten" data-item="5">Vestibulum at eros</li> --}}
           </ul>
         </div>
       </div>
@@ -48,23 +43,231 @@
           <h5 class="card-title">Burgers I Have Eaten</h5>
           <ul class="list-group" id='eatenList'>
             {{#each burgers}}
-              {{#if devoured}}
-                {{> burgers/burger-block devour=true}}
-              {{/if}}
+            {{#if devoured}}
+            {{> burgers/burger-block devour=true}}
+            {{/if}}
             {{/each}}
-            {{!-- <li class="list-group-item eaten" data-item="6">Cras justo odio</li>
-            <li class="list-group-item eaten" data-item="7">Dapibus ac facilisis in</li>
-            <li class="list-group-item eaten" data-item="8">Morbi leo risus</li>
-            <li class="list-group-item eaten" data-item="9">Porta ac consectetur ac</li>
-            <li class="list-group-item eaten" data-item="10">Vestibulum at eros</li> --}}
           </ul>
 
         </div>
       </div>
     </div>
   </div>
+
+
+
+  <!-- Modal for Devour -->
+  <div class="modal fade" id="devourBurger" tabindex="-1" role="dialog" aria-labelledby="devourBurger"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header modalColor">
+          <h5 class="modal-title" id="exampleModalLabel">Devour the '<span id="burgerNameModal"></span>'?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-0 pl-0 pr-0">
+          <form class="needs-validation" id="addBuddyForm">
+            <div class="form-group row fixLine">
+              <div class="col-sm-12">
+                <p>You DEVOURED the burger. Did you do this with a "Burger Buddy"?</p>
+              </div>
+              {{!-- <label for="burgerBuddy" class="col-sm-4 col-form-label">Burger Buddy</label> --}}
+              <div class="col-sm-12">
+                <select id="burgerBuddies" multiple="multiple">
+
+                  <option value="jQuery">jQuery tutorial</option>
+                  <option value="Bootstrap">Bootstrap Tips</option>
+                  <option value="HTML">HTML</option>
+                  <option value="CSS">CSS tricks</option>
+                  <option value="angular">Angular JS</option>
+
+                </select>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" id="manageBurgerBuddy" class="btn btn-secondary">Manage Burger Buddies</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-info" id="saveDevour">DEVOUR</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for Managing Burger Buddies -->
+  <div class="modal fade" id="mBBModal" tabindex="-1" role="dialog" aria-labelledby="devourBurger" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header modalColor">
+          <h5 class="modal-title" id="exampleModalLabel">Manage Your Burger Buddies</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-0 pl-0 pr-0">
+          <form class="needs-validation" id="manageBuddyForm">
+            <div class="form-group row fixLine m-1">
+              <div class="row mb-3">
+                <div class="col-sm-12">
+                  <p>Select a Burger Buddy to work with, or select "[Add a new burger buddy]" to add a new one.</p>
+                  <div class="dropdown show">
+
+                    <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Burger Buddy List
+                    </a>
+
+                    <div class="dropdown-menu" id="burgerBuddyList" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#" class="bbDropdown">[Add a new burger buddy]</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row w-100">
+                <div class="col-12" id="addABuddy">
+                  <div class="row mb-3">
+                    <div class="col-12">
+                      <input type="text" class="form-control" id="buddyName" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <button type="button" class="btn btn-secondary" id="saveNewBuddy">Save New Buddy</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12" id="editABuddy">
+                  <div class="form-group row mb-3">
+                    <div class="col-12">
+                      <input type="text" class="form-control" id="newBuddyName" required>
+                    </div>
+                     <div class="invalid-feedback" id="newBuddyNameInvalid">
+                            This buddy name already exists.  Buddy names must be unique
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <button type="button" class="btn btn-secondary" id="saveBuddy">Save Buddy</button>
+                      <button type="button" class="btn btn-danger" id="deleteBuddy">Delete Buddy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" id="endManageBurgerBuddies" class="btn btn-secondary">Return</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for confirmation for delete of buddy -->
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+    id="confirmModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Delete '<span id="deleteBuddyName"></span>'?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal-btn-no">No</button>
+          <button type="button" class="btn btn-default" id="modal-btn-yes">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for confirmation for delete of burger -->
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+    id="confirmBurgerDelete">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Delete '<span id="deleteBurgerName"></span>'?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal-btn-no">No</button>
+          <button type="button" class="btn btn-default" id="deleteYes">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for Showing Devoured Burger Detail -->
+  <div class="modal fade" id="burgerInfo" tabindex="-1" role="dialog" aria-labelledby="burgerInfo" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header modalColor">
+          <h5 class="modal-title" id="exampleModalLabel">Devoured Burger Detail for '<span
+              id="devouredBurgerName"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-0 pl-0 pr-0">
+          <form class="needs-validation" id="manageBuddyForm">
+            <div class="form-group row fixLine m-1">
+              <div class="form-group row w-100">
+                <label for="iBurgerName" class="col-4 col-form-label">Burger Name</label>
+                <div class="col-8">
+                  <input type="text" class="form-control" id="iBurgerNameText" readonly>
+                </div>
+              </div>
+              <div class="form-group row w-100">
+                <label for="iDevouredAt" class="col-4 col-form-label">Devoured At</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="iDevourdedAtText" readonly>
+                </div>
+              </div>
+              <div class="form-group row w-100">
+                <label for="iBuddies" class="col-4 col-form-label">Burger Buddies</label>
+                <div class="col-8">
+                  <ul class="list-group list-group-scroll" id="iBuddyList">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Return</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<audio class="audios" id="eatAudio" preload="auto"> 
-   <source src="assets/audio/Eating-SoundBible.com-1470347575.wav" type="audio/wav">
+
+
+
+
+
+<audio class="audios" id="eatAudio" preload="auto">
+  <source src="assets/audio/Eating-SoundBible.com-1470347575.wav" type="audio/wav">
 </audio>

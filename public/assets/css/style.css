@@ -28,14 +28,29 @@ body {
     background-color: rgb(253, 222, 127);
 }
 
-.devour {
+.modalColor,.modal-footer {
+    background-color: rgb(253, 222, 127);
+}
+
+.devour, .delete {
     font-family: Silem;
 }
 
-.delete {
-    font-family: Silem;
+
+.list-group-scroll{
+    max-height: 120px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
+
+
+/*Need this so the line above the buttons on the modal box for the Solar ID goes all the way accross*/
+.fixLine{
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 @media only screen and (max-width: 1000px) {
    .addBurger {
