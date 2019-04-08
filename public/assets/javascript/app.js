@@ -76,8 +76,9 @@ $(document).ready(function () {
 
 
 
-    $(document).on("click", "#saveDevour", function () {
+    $(document).on("click", "#saveDevour", function (e) {
 
+        e.preventDefault();
         //Get buddies
         var buddies = []
         $('#burgerBuddies option:selected').each(function () {
