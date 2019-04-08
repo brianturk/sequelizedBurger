@@ -10,7 +10,6 @@ $(document).ready(function () {
 
 
     $('#burgerBuddies').multiselect({
-        includeSelectAllOption: true,
         buttonWidth: 450,
         enableFiltering: true,
         nonSelectedText: 'No Burger Buddy',
@@ -202,6 +201,7 @@ $(document).ready(function () {
         if (buddyName === '[Add a burger buddy]') {
             $('#addABuddy').css('display', 'inline-block');
             $('#editABuddy').css('display', 'none');
+            $("#newBuddyName").val('');
             $("#buddyName").focus();
         } else {
             $("#newBuddyNameInvalid").attr('class','invalid-feedback');
