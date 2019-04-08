@@ -83,6 +83,7 @@ $(document).ready(function () {
         $('#burgerBuddies option:selected').each(function () {
             buddies.push($(this).val())
         })
+        console.log(buddies)
 
         $('#devourBurger').modal('hide');
         $('#eatAudio').trigger('play')
@@ -99,6 +100,7 @@ $(document).ready(function () {
                     buddies: buddies
                 };
 
+                console.log(eatenBurger);
                 // Send the PUT request.
                 $.ajax("/API/eatBurger/", {
                     type: "PUT",
